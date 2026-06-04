@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTP Adoption Initiative Hub</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- PapaParse for CSV parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <!-- Configuration -->
+    <script src="config.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="hub-header">
+        <div class="header-content">
+            <div class="header-left">
+                <img src="assets/sap-logo.svg" alt="SAP" class="sap-logo">
+                <div class="header-title-group">
+                    <h1 class="header-title">Initiative Hub</h1>
+                    <p class="header-subtitle">BTP Adoption Initiatives 2026</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <span class="data-source-badge" id="dataSourceBadge"></span>
+                <span class="initiative-count" id="initiativeCount">0 Initiatives</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search and Filters -->
+    <section class="controls-section">
+        <div class="controls-container">
+            <!-- Search Bar -->
+            <div class="search-wrapper">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input type="text" id="searchInput" class="search-input" placeholder="Search initiatives by name, description, lead, or category...">
+                <button id="clearSearch" class="clear-search" aria-label="Clear search" style="display:none;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6 6 18M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Filter Bar -->
+            <div class="filter-bar" id="filterBar"></div>
+
+            <!-- Active Filters -->
+            <div class="active-filters" id="activeFilters" style="display:none;">
+                <span class="active-filters-label">Active filters:</span>
+                <div class="filter-tags" id="filterTags"></div>
+                <button class="clear-all-btn" id="clearAllFilters">Clear all</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Initiative Cards Grid -->
+    <main class="main-content">
+        <div class="cards-grid" id="cardsGrid"></div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState" style="display:none;">
+            <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"/>
+            </svg>
+            <h3>No initiatives found</h3>
+            <p>Try adjusting your search terms or filters.</p>
+        </div>
+
+        <!-- Loading State -->
+        <div class="loading-state" id="loadingState">
+            <div class="spinner"></div>
+            <p>Loading initiatives...</p>
+        </div>
+    </main>
+
+    <!-- Initiative Detail Modal -->
+    <div class="modal-overlay" id="modalOverlay" style="display:none;">
+        <div class="modal" id="modal" role="dialog" aria-modal="true">
+            <button class="modal-close" id="modalClose" aria-label="Close">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6 6 18M6 6l12 12"></path>
+                </svg>
+            </button>
+            <div class="modal-content" id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Data Loader -->
+    <script src="data-loader.js"></script>
+    <!-- Application Logic -->
+    <script src="app.js"></script>
+</body>
+</html>
